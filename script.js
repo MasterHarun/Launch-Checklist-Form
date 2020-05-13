@@ -11,9 +11,11 @@ let coPilotStatus = document.getElementById("copilotStatus");
 let fuelStatus = document.getElementById("fuelStatus");
 let cargoStatus = document.getElementById("cargoStatus");
 let button = document.getElementById("formSubmit");
-
+let faulty = document.getElementById("faultyItems");
+let launchStatus = document.getElementById("launchStatus");
 
 window.addEventListener("load", function() {
+   json = []
       this.fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
          response.json().then(function(json) {
             const div = document.getElementById("missionTarget");
@@ -26,7 +28,7 @@ window.addEventListener("load", function() {
                   <li>Distance from Earth: ${json.distance}</li>
                   <li>Number of Moons: ${json.moons}</li>
                </ol>
-               <img src="${}">`
+               <img src="${""}">`
          });
       });
       form.addEventListener("submit", function(event) {
@@ -34,14 +36,22 @@ window.addEventListener("load", function() {
                alert("All fields are required!");
             } else if (!isNaN(pilot.value) || !isNaN(coPilot.value) || isNaN(fuelLevel.value) || isNaN(cargoMass.value)) {
                alert("Please enter a valid entry!")
+            } else {
+               if (fuelLevel < 10000 || cargoMass > 10000) {
+                  faulty.style.visibility = "visible";
+                  launchStatus.innerHTML = "Shuttle not ready for launch";
+                  launchStatus.style.color = "red";
+               }
+               pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
+               coPilotStatus.innerHTML = `Co-pilot ${coPilot} is ready for launch`;
+
             }
-
-
-            event.preventDefault();
-         )
-      }
-   )
-}
+               
+         }
+      )
+      event.preventDefault();
+   }
+)
 //
 // let button = document.getElementById("formSubmit"); button.addEventListener("click", function() {
 //    let input = document.getElementById("pilotName");
