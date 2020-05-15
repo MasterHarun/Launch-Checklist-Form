@@ -12,7 +12,6 @@ window.addEventListener("load", function() {
    let coPilotStatus = document.getElementById("copilotStatus");
    let fuelStatus = document.getElementById("fuelStatus");
    let cargoStatus = document.getElementById("cargoStatus");
-   let button = document.getElementById("formSubmit");
    let faulty = document.getElementById("faultyItems");
    let launchStatus = document.getElementById("launchStatus");
 
@@ -65,14 +64,6 @@ window.addEventListener("load", function() {
       event.preventDefault();
    })
 })
-
-//
-// let button = document.getElementById("formSubmit"); button.addEventListener("click", function() {
-//    let input = document.getElementById("pilotName");
-// })
-
-
-
 /* This block of code shows how to format the HTML once you fetch some planetary JSON!
 <h2>Mission Destination</h2>
 <ol>
